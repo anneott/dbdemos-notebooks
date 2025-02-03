@@ -44,6 +44,12 @@ reset_all_data = dbutils.widgets.get("reset_all_data") == "true"
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT CURRENT_METASTORE();
+# MAGIC
+
+# COMMAND ----------
+
 # DBTITLE 1,Setup the demo catalog, schema, and volume context
 DBDemos.setup_schema(catalog, db, reset_all_data, volume_name)
 volume_folder =  f"/Volumes/{catalog}/{db}/{volume_name}"

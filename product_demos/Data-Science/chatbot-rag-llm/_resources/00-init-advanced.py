@@ -55,6 +55,30 @@ def upload_pdfs_to_volume(volume_path):
 def upload_dataset_to_volume(volume_path):
   download_file_from_git(volume_path, "databricks-demos", "dbdemos-dataset", "/llm/databricks-documentation")
 
+
+# COMMAND ----------
+
+import os
+import shutil
+
+def copy_file_to_dest(dest, src):
+    """
+    Copies a file from 'src' to 'dest'.
+    If 'dest' does not exist, it is created.
+    """
+    if not os.path.exists(dest):
+        os.makedirs(dest)  # Create destination folder if it doesn’t exist
+
+    filename = os.path.basename(src)  # Extract filename from source path
+    dest_path = os.path.join(dest, filename)  # Construct destination path
+
+    shutil.copy2(src, dest_path)  # Copy file (preserves metadata)
+    print(f"File copied: {src} → {dest_path}")
+
+def upload_local_pdf_to_volume(volume_path):
+    src_file = "../data/2025_aasta_riigieelarve_seletuskiri_final.pdf" 
+    copy_file_to_dest(volume_path, src_file)
+
 # COMMAND ----------
 
 def deduplicate_assessments_table(assessment_table):

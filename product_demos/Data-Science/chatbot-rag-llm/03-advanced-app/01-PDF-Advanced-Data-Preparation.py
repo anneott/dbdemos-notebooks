@@ -296,7 +296,29 @@ def get_embedding(contents: pd.Series) -> pd.Series:
     .option("checkpointLocation", f'dbfs:{volume_folder}/checkpoints/pdf_chunk')
     .table('databricks_pdf_documentation').awaitTermination())
 
+print("PDF raw done")
+
 #Let's also add our documentation web page from the simple demo (make sure you run the quickstart demo first)
+# if spark.catalog.tableExists(f'{catalog}.{db}.databricks_documentation'):
+#   (spark.readStream.option("skipChangeCommits", "true").table('databricks_documentation') #skip changes for more stable demo
+#       .withColumn('embedding', get_embedding("content"))
+#       .select('url', 'content', 'embedding')
+#   .writeStream
+#     .trigger(availableNow=True)
+#     .option("checkpointLocation", f'dbfs:{volume_folder}/checkpoints/docs_chunks')
+#     .table('databricks_pdf_documentation').awaitTermination())
+  # 
+# print("web page done")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM databricks_pdf_documentation WHERE url like '%.pdf' limit 10
+
+# COMMAND ----------
+
+
+# Let's also add our documentation web page from the simple demo (make sure you run the quickstart demo first)
 if spark.catalog.tableExists(f'{catalog}.{db}.databricks_documentation'):
   (spark.readStream.option("skipChangeCommits", "true").table('databricks_documentation') #skip changes for more stable demo
       .withColumn('embedding', get_embedding("content"))
@@ -305,6 +327,7 @@ if spark.catalog.tableExists(f'{catalog}.{db}.databricks_documentation'):
     .trigger(availableNow=True)
     .option("checkpointLocation", f'dbfs:{volume_folder}/checkpoints/docs_chunks')
     .table('databricks_pdf_documentation').awaitTermination())
+  
 
 # COMMAND ----------
 
