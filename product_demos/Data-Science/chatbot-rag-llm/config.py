@@ -9,7 +9,7 @@
 
 # COMMAND ----------
 
-VECTOR_SEARCH_ENDPOINT_NAME="dbdemos_vs_endpoint"
+VECTOR_SEARCH_ENDPOINT_NAME="keskkonnaagentuur_taastuvenergia_rag_endpoint"
 
 DATABRICKS_SITEMAP_URL = "https://docs.databricks.com/en/doc-sitemap.xml"
 
