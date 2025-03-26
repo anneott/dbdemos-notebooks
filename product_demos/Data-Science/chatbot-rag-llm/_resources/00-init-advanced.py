@@ -75,9 +75,10 @@ def copy_file_to_dest(dest, src):
     shutil.copy2(src, dest_path)  # Copy file (preserves metadata)
     print(f"File copied: {src} → {dest_path}")
 
-def upload_local_pdf_to_volume(volume_path):
-    src_file = "../data/2025_aasta_riigieelarve_seletuskiri_final.pdf" 
-    copy_file_to_dest(volume_path, src_file)
+def upload_local_pdf_to_volume(source_file_path, volume_path):
+    import os
+    print(f"Current working directory: {os.getcwd()}")
+    copy_file_to_dest(volume_path, source_file_path)
 
 # COMMAND ----------
 

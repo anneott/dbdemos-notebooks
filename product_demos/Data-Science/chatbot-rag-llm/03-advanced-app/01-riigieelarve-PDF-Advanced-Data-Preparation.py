@@ -55,7 +55,7 @@
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC CREATE VOLUME IF NOT EXISTS volume_riigieelarve;
+# MAGIC CREATE VOLUME IF NOT EXISTS volume_taastuvenergia;
 
 # COMMAND ----------
 
@@ -64,7 +64,7 @@
 volume_folder =  f"/Volumes/{catalog}/{db}/volume_riigieelarve"
 # Let's upload some pdf files to our volume as example. Change this with your own PDFs / docs.
 # upload_pdfs_to_volume(volume_folder+"/databricks-pdf")
-upload_local_pdf_to_volume(volume_folder+"/databricks-pdf") # new code!
+upload_local_pdf_to_volume(source_file_path="../data/2025_aasta_riigieelarve_seletuskiri_final.pdf" , volume_path=volume_folder+"/databricks-pdf") # new code!
 
 display(dbutils.fs.ls(volume_folder+"/databricks-pdf"))
 
